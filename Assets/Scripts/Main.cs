@@ -7,25 +7,25 @@ using fmp;
 
 public class Main : MonoBehaviour
 {
-    NavMesh m_map = null;
+    Playspace m_playspace = null;
     FindMyPath m_pathEngine = null;
-    List<Barn> m_homes = null;
-    List<Worker> m_workers = null;
-    List<Mineral> m_minerals = null;
+    List<Storage> m_homes = null;
+    List<Agents> m_workers = null;
+    List<Rsources> m_minerals = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_map = new NavMesh();
-        m_pathEngine = new FindMyPath(m_map);
+        m_playspace = new Playspace();
+        m_pathEngine = new FindMyPath(m_playspace);
 
-        m_map.Generate3DMap();
+        m_playspace.Generate3DMap();
 
-        Barn b = new Barn(10, 9, 9);
+        Storage b = new Storage(10, 9, 9);
 
-        Mineral m = new Mineral(8, 8);
+        Rsources m = new Rsources(8, 8);
 
-        Worker w = new Worker(7, 7);
+        Agents w = new Agents(7, 7);
 
         //GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 

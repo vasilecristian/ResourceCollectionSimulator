@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace rcs
 {
-    public class Barn
+    public class Storage
     {
         uint m_maxCapatity = 0;
         uint m_storredItems = 0;
         GameObject m_object3d = null;
 
-        public Barn(uint maxCapatity, int meshPosX, int meshPosY)
+        public Storage(uint maxCapatity, int meshPosX, int meshPosY)
         {
             m_maxCapatity = maxCapatity;
 

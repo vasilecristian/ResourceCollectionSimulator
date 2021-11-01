@@ -7,7 +7,7 @@ using UnityEngine;
 namespace rcs
 {
    
-    public class NavMesh : INavMesh
+    public class Playspace : INavMesh
     {
         const uint ROW = 0;
         const uint COL = 1;
@@ -125,7 +125,7 @@ namespace rcs
         }
 
         //======================================================================
-        public NavMesh()
+        public Playspace()
         {
             Console.WriteLine(this.GetType().FullName);
         }

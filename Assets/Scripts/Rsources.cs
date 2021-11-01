@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace rcs
 {
-    public class Mineral
+    public class Rsources
     {
         GameObject m_object3d = null;
 
-        public Mineral(int meshPosX, int meshPosY)
+        public Rsources(int meshPosX, int meshPosY)
         {
             m_object3d = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             m_object3d.transform.position = new Vector3(meshPosX * 10, 0.5f, meshPosY * 10);
