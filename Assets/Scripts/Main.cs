@@ -7,9 +7,7 @@ using rcs;
 using fmp;
 
 public class Main : MonoBehaviour
-{
-    
-
+{ 
     const uint mapWidth = 8;
     const uint mapHeight = 8;
     const uint resourceSpawnLocations = 4;
@@ -64,16 +62,15 @@ public class Main : MonoBehaviour
                 if (nodeValue == Playspace.I)
                 {
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3(x * 10, 0, y * 10);
-                    cube.transform.localScale = new Vector3(10, 5, 10);
+                    cube.transform.position = new Vector3(x * 10, 1, y * 10);
+                    cube.transform.localScale = new Vector3(8, 2, 8);
                     cube.GetComponent<Renderer>().material.color = new Color32(177, 199, 201, 1);
                 }
-                else
-                {
-                    GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-                    plane.transform.position = new Vector3(x * 10, 0, y * 10);
-                    plane.GetComponent<Renderer>().material.color = new Color32(60, 84, 86, 1);
-                }
+
+                GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+                plane.transform.position = new Vector3(x * 10, 0, y * 10);
+                plane.GetComponent<Renderer>().material.color = new Color32(60, 84, 86, 1);
+
             }
         }
     }
@@ -91,7 +88,8 @@ public class Main : MonoBehaviour
 
                 if (nodeValue == Playspace.R)
                 {
-                    m_resources.Add(new rcs.Resource(ResourceType.COOPER, x, y));
+                    ResourceType type = (ResourceType)m_rnd.Next(3);
+                    m_resources.Add(new rcs.Resource(new PositionOnPlayspace(x, y), type));
                 }
             }
         }
@@ -111,7 +109,7 @@ public class Main : MonoBehaviour
 
                 if (nodeValue == Playspace.S)
                 {
-                    m_storages.Add(new Storage(10, x, y));
+                    m_storages.Add(new Storage(new PositionOnPlayspace(x, y), 10));
                 }
             }
         }
@@ -132,7 +130,7 @@ public class Main : MonoBehaviour
             }
             while (m_playspace.GetNodeValue(x, y) != Playspace.O);
 
-            m_agents.Add(new Agent(x, y, m_resources, m_storages, m_playspace, m_pathEngine, m_rnd));
+            m_agents.Add(new Agent(new PositionOnPlayspace(x, y), m_resources, m_storages, m_playspace, m_pathEngine, m_rnd));
         }
         while (m_agents.Count < numberOfAgents);
     }
@@ -145,5 +143,7 @@ public class Main : MonoBehaviour
         {
             agent.Update();
         }
+
+       
     }
 }

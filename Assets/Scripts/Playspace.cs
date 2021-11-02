@@ -6,10 +6,12 @@ using UnityEngine;
 
 namespace rcs
 {
-    public class MapPos
+    public class PositionOnPlayspace
     {
         public ulong x = 0;
         public ulong y = 0;
+
+        public PositionOnPlayspace(ulong posX, ulong posY) { x = posX; y = posY; }
     }
    
     public class Playspace : INavMesh
@@ -150,9 +152,9 @@ namespace rcs
         }
 
         //======================================================================
-        public MapPos GetMapPos(ulong index)
+        public PositionOnPlayspace GetMapPos(ulong index)
         {
-            MapPos mapPos = new MapPos();
+            PositionOnPlayspace mapPos = new PositionOnPlayspace(0, 0);
             mapPos.x = index % Width;
             mapPos.y = index / Width;
 
